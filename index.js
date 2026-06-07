@@ -113,10 +113,14 @@ async function parseExport(msg) {
 }
 
 async function parseIG(msg) {
-  // Faab'Hook peut envoyer soit des embeds soit du texte brut
+  // Debug : afficher le contenu brut des premiers messages
+  if(msg.embeds.length || msg.content){
+    console.log(`[IG DEBUG] embeds:${msg.embeds.length} content:${msg.content?.substring(0,80)||'(vide)'}`);
+    if(msg.embeds.length) console.log(`[IG DEBUG] embed[0] title:${msg.embeds[0]?.title} desc:${msg.embeds[0]?.description?.substring(0,100)}`);
+  }
+
   const toProcess = [];
 
-  // Cas 1 : embeds Discord
   for (const embed of (msg.embeds || [])) {
     const title = (embed.title || embed.author?.name || '').toLowerCase();
     if (title.includes('inventor')) {
@@ -124,7 +128,6 @@ async function parseIG(msg) {
     }
   }
 
-  // Cas 2 : texte brut du message (pas d'embed)
   if (!toProcess.length && msg.content) {
     const content = msg.content;
     const titleMatch = content.match(/^(inventory\s*-\s*(?:add|remove))/im);
@@ -154,7 +157,7 @@ async function parseIG(msg) {
     };
 
     if (!row.item) {
-      console.log('[IG] Ignoré - pas de item. data:', JSON.stringify(data).substring(0,100));
+      console.log('[IG] Ignoré - pas de item. data:', JSON.stringify(data).substring(0,150));
       continue;
     }
 
