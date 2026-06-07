@@ -1,0 +1,16 @@
+{
+  "name": "davisquartz-bot",
+  "version": "1.0.0",
+  "description": "Davis Quartz Mining Co. — Bot lecteur Discord → Supabase",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "discord.js": "^14.0.0",
+    "@supabase/supabase-js": "^2.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
