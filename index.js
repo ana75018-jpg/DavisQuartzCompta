@@ -113,10 +113,12 @@ async function parseExport(msg) {
 }
 
 async function parseIG(msg) {
-  // Debug : afficher le contenu brut des premiers messages
-  if(msg.embeds.length || msg.content){
-    console.log(`[IG DEBUG] embeds:${msg.embeds.length} content:${msg.content?.substring(0,80)||'(vide)'}`);
-    if(msg.embeds.length) console.log(`[IG DEBUG] embed[0] title:${msg.embeds[0]?.title} desc:${msg.embeds[0]?.description?.substring(0,100)}`);
+  // Debug complet
+  console.log(`[IG DEBUG] msg id:${msg.id} embeds:${msg.embeds.length} content:"${(msg.content||'').substring(0,50)}" author:${msg.author?.username||'?'} webhook:${msg.webhookId||'non'}`);
+  if(msg.embeds.length > 0){
+    msg.embeds.forEach((e,i)=>{
+      console.log(`[IG DEBUG] embed[${i}] title:"${e.title}" desc:"${(e.description||'').substring(0,80)}"`);
+    });
   }
 
   const toProcess = [];
