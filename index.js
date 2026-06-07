@@ -1,5 +1,5 @@
 // DAVIS QUARTZ — Bot lecteur Discord → Supabase
-const { Client, GatewayIntentBits, Events, Partials } = require('discord.js');
+const { Client, GatewayIntentBits, Events, Partials } = require('discord.js'); 
 const { createClient } = require('@supabase/supabase-js');
 
 const DISCORD_TOKEN = process.env.DISCORD_TOKEN;
